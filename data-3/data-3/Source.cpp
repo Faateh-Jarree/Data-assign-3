@@ -5,8 +5,62 @@
 
 using namespace std;
 
+//CALCULATING FREQUENCY OF ALPHABETS
+void calc_freq(int arr_sent[]){
+	
+	//strings to read line and store all file in one string
+	string stored_file,line_reader;
+	ifstream myfile;
+
+	myfile.open ( "test.txt" );
+
+	while ( myfile.good () ) {
+		getline ( myfile, line_reader );
+		stored_file += line_reader;		
+		//stored_file += '\n';			//new line after every line read
+	}
+	//cout << stored_file << endl;		//check = true for large input
+
+	//char count array (initialized as 0)
+	for ( int i = 0; i < 256; i++ ) {
+		arr_sent[i] = 0;
+	}
+
+	//counting frequency
+	for ( int i = 0; i < stored_file.length (); i++ ) {
+		if ( (int ( stored_file[i] ) >= 97) && (int ( stored_file[i] ) <= 123) ) {	
+			for ( int j = 0; j < 256; j++ ) {
+				if ( int ( stored_file[i] ) == j ) {
+					arr_sent[j - 32]++;
+					arr_sent[j]++;
+				}
+			}
+		}
+		else if ( (int ( stored_file[i] ) >= 65) && (int ( stored_file[i] ) <= 96) ) {
+			for ( int j = 0; j < 256; j++ ) {
+				if ( int ( stored_file[i] ) == j ) {
+					arr_sent[j + 32]++;
+					arr_sent[j]++;
+				}
+			}
+		}
+		else {
+			for ( int j = 0; j < 256; j++ ) {
+				if ( int ( stored_file[i] ) == j ) {
+					arr_sent[j]++;
+				}
+			}
+		}
+	}
+	//cout << arr_sent[32] << endl;		//check = true for All input
+}
+
+
 int main () {
-	cout << "a";
+
+	int freq_array[256];
+	calc_freq (freq_array);
 	system ( "pause" );
+
 	return 0;
 }

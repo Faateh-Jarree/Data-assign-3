@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <fstream>
 #include <string>
+#include "Tree_class.h"
+#include "LinkedList.h"
 
 using namespace std;
 
@@ -32,15 +34,6 @@ void calc_freq(int arr_sent[]){
 			for ( int j = 0; j < 256; j++ ) {
 				if ( int ( stored_file[i] ) == j ) {
 					arr_sent[j - 32]++;
-					arr_sent[j]++;
-				}
-			}
-		}
-		else if ( (int ( stored_file[i] ) >= 65) && (int ( stored_file[i] ) <= 96) ) {
-			for ( int j = 0; j < 256; j++ ) {
-				if ( int ( stored_file[i] ) == j ) {
-					arr_sent[j + 32]++;
-					arr_sent[j]++;
 				}
 			}
 		}
@@ -58,9 +51,27 @@ void calc_freq(int arr_sent[]){
 
 int main () {
 
+/*//////////////////////////////////////////////////////////////STEP 1///////////////////////////////////////////////////*/
+
+	//Calculating frequency of alphabets int the file
 	int freq_array[256];
 	calc_freq (freq_array);
-	system ( "pause" );
 
+/*//////////////////////////////////////////////////////////////STEP 2///////////////////////////////////////////////////*/
+
+	//Creating a linked list to hold the trees formed
+	linked_list list_of_trees;
+
+	//Sending the chars with freqs formed as trees to the list of trees
+	for ( int i = 0; i < 256; i++ ) {
+		if ( freq_array[i] > 0 ) {
+			bin_tree to_send ( char ( i ), freq_array[i] );
+			list_of_trees.add_tree ( to_send );
+		}
+	}
+
+	list_of_trees.print ();
+
+	system ( "pause" );
 	return 0;
 }

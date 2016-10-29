@@ -113,4 +113,12 @@ public:
 	int get_freq () {
 		return this->root->frq;
 	}
+
+	void set_freq ( int sent ) {
+		this->root->frq = sent;
+	}
+
+	void set_alpha ( char sent ) {
+		this->root->alphabet = sent;
+	}
 };

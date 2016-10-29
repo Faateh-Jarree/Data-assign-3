@@ -42,27 +42,66 @@ struct linked_list {
 		}
 	}
 
-		void print () {
-	
-			if ( is_empty () ) {
-				cout << "list is empty. cant print.\n";
-			}
-	
-			else {
-				Node* printer = head;
-				for ( ; printer != NULL;) {
-					cout << "Alphabet = " << printer->record.get_alpha ();
-					cout << "\tFrequency =  " << printer->record.get_freq() << endl;
-					printer = printer->next;
+	void sort_list () {
+		
+		Node *temp = head;
+
+		int counter = 0;
+		int temp_freq;
+		char temp_char;
+
+		while ( temp ) {
+			temp = temp->next;
+			counter++;
+		}
+		temp = head;
+
+		for ( int i = 0; i < counter; i++ ) {
+
+			while ( temp->next ) {
+
+				if ( temp->record.get_freq() > temp->next->record.get_freq() ) {
+
+					temp_freq = temp->record.get_freq ();
+					temp_char = temp->record.get_alpha ();
+					
+					temp->record.set_freq ( temp->next->record.get_freq () );
+					temp->record.set_alpha ( temp->next->record.get_alpha () );
+
+					temp->next->record.set_freq ( temp_freq );
+					temp->next->record.set_alpha ( temp_char );
+					
+				}
+
+				else {
+					temp = temp->next;
 				}
 			}
+			temp = head;
 		}
+	}
+
+	void print () {
+	
+		if ( is_empty () ) {
+			cout << "list is empty. cant print.\n";
+		}
+	
+		else {
+			Node* printer = head;
+			for ( ; printer != NULL;) {
+				cout << "Alphabet = " << printer->record.get_alpha ();
+				cout << "\tFrequency =  " << printer->record.get_freq() << endl;
+				printer = printer->next;
+			}
+		}
+	}
 };
 
-	//Node* find_tree ( bin_tree& tree_sent ) {
+//Node* find_tree ( bin_tree& tree_sent ) {
 
-	//	bool is_found = false;
-	//	Node *finder = head;
+//	bool is_found = false;
+//	Node *finder = head;
 	//	if ( finder->record.get_alp() == tree_sent.get_alp() ) {
 	//		return finder;
 	//	}

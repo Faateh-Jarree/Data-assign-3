@@ -2,7 +2,6 @@
 #include <algorithm>
 #include <fstream>
 #include <string>
-#include "Tree_class.h"
 #include "LinkedList.h"
 
 using namespace std;
@@ -70,6 +69,8 @@ int main () {
 		}
 	}
 
+	list_of_trees.print ();
+	list_of_trees.sort_list ();
 	list_of_trees.print ();
 
 	system ( "pause" );

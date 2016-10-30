@@ -126,7 +126,7 @@ public:
 		}
 	}
 
-	//Implementing Part 3
+	//Implementing Part 3 and 4
 	void part_3 () {
 
 		Node* temp_ptr = front;
@@ -146,7 +146,13 @@ public:
 			temp.create_new ( temp_left.get_root (), temp_right.get_root () );
 			this->enqueue ( temp );
 			this->sort_queue ();
-		}			
+		}
+	}
+
+	void part_5 () {
+		string ss;
+		this->front->record.assign_traversal_values ( front->record.get_root (), ss );
+		//cout << "\n\nString formed = " << ss;
 	}
 };
 //struct linked_list {

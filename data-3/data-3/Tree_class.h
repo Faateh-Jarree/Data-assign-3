@@ -33,7 +33,22 @@ public:
 	}
 
 	//Forming a tree of two trees
-	void insert ( node *lft, node *rht ) {
+	void create_new ( node *lft, node *rht ) {
+		
+		int k = 0;
+		int j = 0;
+		root = new node;
+		
+		if ( root->left != NULL ) {
+			k = lft->frq;
+		}
+		
+		if ( root->right != NULL ) {
+			j = rht->frq;
+		}
+		
+		root->alphabet = NULL;
+		root->frq = k + j;
 		root->left = lft;
 		root->right = rht;
 	}
@@ -104,6 +119,33 @@ public:
 			delete_tree ( root->right );
 			delete root;
 		}
+	}
+
+	void print () {
+		if ( root == NULL ) {
+			cout << "Tree is empty. cant print.\n";
+		}
+				
+		else {
+			
+			cout << "Root char = " << root->alphabet;
+			cout << "\tRoot frq =  " << root->frq << endl;
+
+			if ( root->left != NULL ) {
+				cout << "Left char = " << root->left->alphabet;
+				cout << "\tLeft frq =  " << root->left->frq;
+			}
+			
+			if ( root->right != NULL ) {
+				cout << "\tRight char = " << root->right->alphabet;
+				cout << "\tRight frq =  " << root->left->frq;
+			}
+			cout << endl;
+		}
+	}
+
+	node* get_root () {
+		return this->root;
 	}
 
 	char get_alpha () {

@@ -59,20 +59,27 @@ int main () {
 /*//////////////////////////////////////////////////////////////STEP 2///////////////////////////////////////////////////*/
 
 	//Creating a linked list to hold the trees formed
-	linked_list list_of_trees;
+	Queue Queue_of_trees;
 
 	//Sending the chars with freqs formed as trees to the list of trees
 	for ( int i = 0; i < 256; i++ ) {
 		if ( freq_array[i] > 0 ) {
 			bin_tree to_send ( char ( i ), freq_array[i] );
-			list_of_trees.add_tree ( to_send );
+			Queue_of_trees.enqueue ( to_send );
 		}
 	}
 
-	list_of_trees.print ();
-	list_of_trees.sort_list ();
-	list_of_trees.print ();
+	//Queue_of_trees.print ();
+	Queue_of_trees.sort_queue ();
+	cout << "SORTED LINKED LIST OF TREES STEP 2\n\n";
+	Queue_of_trees.display ();
+	cout << endl;
 
+/*//////////////////////////////////////////////////////////////STEP 3///////////////////////////////////////////////////*/
+	
+	/*Queue_of_trees.part_3 ();
+	Queue_of_trees.print ();*/
+	
 	system ( "pause" );
 	return 0;
 }

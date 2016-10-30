@@ -28,7 +28,7 @@ void calc_freq(int arr_sent[]){
 	}
 
 	//counting frequency
-	for ( int i = 0; i < stored_file.length (); i++ ) {
+	for ( unsigned int i = 0; i < stored_file.length (); i++ ) {
 		if ( (int ( stored_file[i] ) >= 97) && (int ( stored_file[i] ) <= 123) ) {	
 			for ( int j = 0; j < 256; j++ ) {
 				if ( int ( stored_file[i] ) == j ) {
@@ -72,13 +72,14 @@ int main () {
 	//Queue_of_trees.print ();
 	Queue_of_trees.sort_queue ();
 	cout << "SORTED LINKED LIST OF TREES STEP 2\n\n";
-	Queue_of_trees.display ();
+	//Queue_of_trees.display ();
 	cout << endl;
 
 /*//////////////////////////////////////////////////////////////STEP 3///////////////////////////////////////////////////*/
 	
-	/*Queue_of_trees.part_3 ();
-	Queue_of_trees.print ();*/
+	Queue_of_trees.part_3 ();
+	Queue_of_trees.display ();
+	cout << endl;
 	
 	system ( "pause" );
 	return 0;

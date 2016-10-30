@@ -47,10 +47,10 @@ public:
 	}
 
 	//The dequeue function. Will return the dequeued node. (if required later)
-	Node* dequeue () {
+	bin_tree dequeue () {
 
-		Node *temp = new Node;
-		Node *temp2 = new Node;
+		bin_tree temp;
+		bin_tree temp2;
 
 		if ( is_empty () ) {
 			front = rear = NULL;
@@ -59,13 +59,11 @@ public:
 
 		else {
 
-			temp->record = this->front->record;
+			temp = this->front->record;
 			this->front = this->front->next;
 			temp2 = temp;
-
-			delete temp;//ss
 		}
-
+		//cout<<"LOOOL = "<<temp2->frq<< endl;
 		return temp2;
 	}
 
@@ -90,7 +88,7 @@ public:
 	void sort_queue () {
 			
 		Node *temp = front;
-	
+		bin_tree temp2;
 		int counter = 0;
 		int temp_freq;
 		char temp_char;
@@ -107,15 +105,17 @@ public:
 	
 				if ( temp->record.get_freq() > temp->next->record.get_freq() ) {
 	
-					temp_freq = temp->record.get_freq ();
+					temp2 = temp->record;
+					temp->record = temp->next->record;
+					temp->next->record = temp2;
+					/*temp_freq = temp->record.get_freq ();
 					temp_char = temp->record.get_alpha ();
 						
 					temp->record.set_freq ( temp->next->record.get_freq () );
 					temp->record.set_alpha ( temp->next->record.get_alpha () );
 	
 					temp->next->record.set_freq ( temp_freq );
-					temp->next->record.set_alpha ( temp_char );
-						
+					temp->next->record.set_alpha ( temp_char );*/
 				}
 	
 				else {
@@ -124,6 +124,20 @@ public:
 			}
 			temp = front;
 		}
+	}
+
+	//Implementing Part 3
+	void part_3 () {
+
+		bin_tree temp;
+		bin_tree temp_left;
+		bin_tree temp_right;
+
+		temp_left = this->dequeue ();
+		temp_right = this->dequeue ();
+		temp.create_new ( temp_left.get_root (), temp_right.get_root () );
+		this->enqueue ( temp );
+		this->sort_queue ();
 	}
 };
 //struct linked_list {

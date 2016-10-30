@@ -71,13 +71,14 @@ int main () {
 
 	//Queue_of_trees.print ();
 	Queue_of_trees.sort_queue ();
-	cout << "SORTED LINKED LIST OF TREES STEP 2\n\n";
-	//Queue_of_trees.display ();
+	cout << "----------------------------------------SORTED LINKED LIST OF TREES STEP 2----------------------------------------\n\n";
+	Queue_of_trees.display ();
 	cout << endl;
 
 /*//////////////////////////////////////////////////////////////STEP 3///////////////////////////////////////////////////*/
 	
 	Queue_of_trees.part_3 ();
+	cout << "----------------------------------------SORTED LINKED LIST OF TREES STEP 3----------------------------------------\n\n";
 	Queue_of_trees.display ();
 	cout << endl;
 	

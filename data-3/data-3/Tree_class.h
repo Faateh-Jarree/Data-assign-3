@@ -49,13 +49,15 @@ public:
 		int j = 0;
 		root = new node;
 
-		root->alphabet = NULL;
+		root->alphabet = NULL;		
 		k = lft->frq;
 		j = rht->frq;
 		root->frq = k + j;
 		root->left = lft;
 		root->right = rht;
 		root->left->left = NULL;
+		root->left->right = NULL;
+		root->right->right = NULL;
 		root->right->right = NULL;
 	}
 
@@ -145,10 +147,11 @@ public:
 
 				if ( root->right != NULL ) {
 					cout << "\tRight char = " << root->right->alphabet;
-					cout << "\tRight frq =  " << root->left->frq;
+					cout << "\tRight frq =  " << root->right->frq;
 				}
 				cout << endl << endl;
 			}
+
 			else {
 				cout << "Root char = " << root->alphabet;
 				cout << "\tRoot frq =  " << root->frq << endl;
@@ -160,7 +163,7 @@ public:
 
 				if ( root->right != NULL ) {
 					cout << "\tRight char = " << root->right->alphabet;
-					cout << "\tRight frq =  " << root->left->frq;
+					cout << "\tRight frq =  " << root->right->frq;
 				}
 				cout << endl;
 			}

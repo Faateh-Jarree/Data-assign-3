@@ -129,15 +129,24 @@ public:
 	//Implementing Part 3
 	void part_3 () {
 
+		Node* temp_ptr = front;
+		int counter;
 		bin_tree temp;
 		bin_tree temp_left;
 		bin_tree temp_right;
 
-		temp_left = this->dequeue ();
-		temp_right = this->dequeue ();
-		temp.create_new ( temp_left.get_root (), temp_right.get_root () );
-		this->enqueue ( temp );
-		this->sort_queue ();
+		while ( temp_ptr ) {
+			counter++;
+			temp_ptr = temp_ptr->next;
+		}
+	
+		for ( int i = 1; i < counter; i++ ) {
+			temp_left = this->dequeue ();
+			temp_right = this->dequeue ();
+			temp.create_new ( temp_left.get_root (), temp_right.get_root () );
+			this->enqueue ( temp );
+			this->sort_queue ();
+		}			
 	}
 };
 //struct linked_list {

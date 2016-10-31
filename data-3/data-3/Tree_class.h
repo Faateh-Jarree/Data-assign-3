@@ -3,9 +3,10 @@
 #include "array_frequency.h"
 using namespace std;
 
-int glo = 0; string ss;
-int glo2 = 0;
+int glo = 0;
 int glo1 = 0;
+int glo2 = 0;
+
 struct node
 {
 	char alphabet;	//Alphabet
@@ -125,9 +126,6 @@ public:
 
 	void assign_traversal_values ( node* root_sent, string& to_assign, array_freq ar[]) {
 
-		string table_char;
-		int table_freq;
-		string table_bin;
 		if ( root_sent != NULL ) {
 		
 			assign_traversal_values ( root_sent->left, to_assign += "0",ar );
@@ -138,7 +136,6 @@ public:
 			
 			if ( root_sent->alphabet != NULL ) {
 				//cout << root_sent->alphabet << " " << root_sent->frq << '\t';
-				ss += root_sent->alphabet;
 				ar[glo1].alp = root_sent->alphabet;
 				glo1++;
 			}
@@ -158,9 +155,6 @@ public:
 			if ( glo % 2 == 0 ) {
 				ar[glo2].bin_val = to_assign;
 				glo2++;
-			    //cout << to_assign << endl;
-				//ss += to_assign;
-				//cout << ss << endl;
 			}
 			return;
 		}

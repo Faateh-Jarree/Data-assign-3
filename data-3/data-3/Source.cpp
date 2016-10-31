@@ -61,6 +61,10 @@ int main () {
 		}
 	}
 
+	//for part 5
+	int size = 0;
+	size = Queue_of_trees.get_size ();
+
 	cout << "--------------------------------------------STEP 1-------------------------------------------\n\n";
 	Queue_of_trees.display();
 	Queue_of_trees.sort_queue ();
@@ -76,10 +80,10 @@ int main () {
 /*//////////////////////////////////////////////////////////////STEP 5///////////////////////////////////////////////////*/
 
 	cout << "--------------------------------------------STEP 5-------------------------------------------\n\n";
-	
-	Queue_of_trees.part_5 ();
-	cout << endl;
 
+	array_freq *arr = new array_freq[size];
+	Queue_of_trees.part_5 (arr);
+	arr[0].print ();
 	system ( "pause" );
 	return 0;
 }

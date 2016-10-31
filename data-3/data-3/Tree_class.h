@@ -1,8 +1,11 @@
 #pragma once
 #include <iostream>
+#include "array_frequency.h"
 using namespace std;
 
-int glo = 0;
+int glo = 0; string ss;
+int glo2 = 0;
+int glo1 = 0;
 struct node
 {
 	char alphabet;	//Alphabet
@@ -114,47 +117,56 @@ public:
 		}
 	}
 
-	void print2 ( node * Root ) {
-		if ( Root == NULL ) {
-			return;
-		}
-		print2 ( Root->left );
-		cout << Root->alphabet<<endl;
-		print2 ( Root->right );
-
+	void store_string ( string &str_sent ) {
+		string ss;
+		ss += str_sent;
+		cout << "ss = " << ss << endl;
 	}
-	void assign_traversal_values ( node* root_sent, string& to_assign ) {
 
+	void assign_traversal_values ( node* root_sent, string& to_assign, array_freq ar[]) {
+
+		string table_char;
+		int table_freq;
+		string table_bin;
 		if ( root_sent != NULL ) {
 		
-			assign_traversal_values ( root_sent->left, to_assign += "0" );
+			assign_traversal_values ( root_sent->left, to_assign += "0",ar );
 			
 			if ( root_sent->alphabet == NULL ) {
 				to_assign = to_assign.substr ( 0, to_assign.size () - 1 );
 			}
 			
 			if ( root_sent->alphabet != NULL ) {
-				cout << root_sent->alphabet << " " << root_sent->frq << '\t';
+				//cout << root_sent->alphabet << " " << root_sent->frq << '\t';
+				ss += root_sent->alphabet;
+				ar[glo1].alp = root_sent->alphabet;
+				glo1++;
 			}
 
-			assign_traversal_values ( root_sent->right, to_assign += "1" );
+			assign_traversal_values ( root_sent->right, to_assign += "1",ar );
 			
 			if ( root_sent->alphabet == NULL ) {
 				to_assign = to_assign.substr ( 0, to_assign.size () - 1 );
 			}
-
 		}
 
 		else {
+			
 			glo++;
 			to_assign = to_assign.substr ( 0, to_assign.size () - 1 );
+
 			if ( glo % 2 == 0 ) {
-				cout << to_assign << endl;
+				ar[glo2].bin_val = to_assign;
+				glo2++;
+			    //cout << to_assign << endl;
+				//ss += to_assign;
+				//cout << ss << endl;
 			}
-			
 			return;
 		}
 	}
+
+
 
 	node* get_root () {
 		return this->root;

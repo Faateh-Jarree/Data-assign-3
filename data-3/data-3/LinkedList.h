@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Tree_class.h"
+#include "array_frequency.h"
 using namespace std;
 
 struct Node {
@@ -118,6 +119,16 @@ public:
 		}
 	}
 
+	int get_size () {
+		Node* temp_ptr = front;
+		int counter;
+		while ( temp_ptr ) {
+			counter++;
+			temp_ptr = temp_ptr->next;
+		}
+		return counter;
+	}
+
 	//Implementing Part 3 and 4
 	void part_3 () {
 
@@ -141,16 +152,11 @@ public:
 		}
 	}
 
-	void store_string (string str_sent) {
-
-	}
-
 	//Implementing Part 5
-	void part_5 () {
-		string ss="";
+	void part_5 (array_freq ar[]) {
 	
+		string ss="";
 		node* j = this->front->record.get_root ();
-		this->front->record.assign_traversal_values ( j, ss );
-		//cout << "\n\nString formed = " << ss;
+		this->front->record.assign_traversal_values ( j, ss ,ar);
 	}
 };

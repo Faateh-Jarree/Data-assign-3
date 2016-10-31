@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include "LinkedList.h"
+#include "array_frequency.h"
 
 using namespace std;
 
@@ -29,20 +30,11 @@ void calc_freq(int arr_sent[]){
 
 	//counting frequency
 	for ( unsigned int i = 0; i < stored_file.length (); i++ ) {
-		if ( (int ( stored_file[i] ) >= 97) && (int ( stored_file[i] ) <= 123) ) {	
-			for ( int j = 0; j < 256; j++ ) {
-				if ( int ( stored_file[i] ) == j ) {
-					arr_sent[j - 32]++;
-				}
-			}
-		}
-		else {
 			for ( int j = 0; j < 256; j++ ) {
 				if ( int ( stored_file[i] ) == j ) {
 					arr_sent[j]++;
 				}
 			}
-		}
 	}
 	//cout << arr_sent[32] << endl;		//check = true for All input
 }
@@ -69,24 +61,25 @@ int main () {
 		}
 	}
 
-	//Queue_of_trees.print ();
+	cout << "--------------------------------------------STEP 1-------------------------------------------\n\n";
+	Queue_of_trees.display();
 	Queue_of_trees.sort_queue ();
-	cout << "--------------------------------SORTED LINKED LIST OF TREES STEP 2----------------------------------------\n\n";
+	cout << "--------------------------------SORTED LINKED LIST OF TREES STEP 2---------------------------\n\n";
 	Queue_of_trees.display ();
-	cout << endl;
 
 /*//////////////////////////////////////////////////////////////STEP 3 & 4///////////////////////////////////////////////////*/
 	
 	Queue_of_trees.part_3 ();
-	cout << "----------------------------------------STEPS 3 AND 4----------------------------------------\n\n";
+	cout << "-----------------------------------------STEPS 3 AND 4---------------------------------------\n\n";
 	Queue_of_trees.display ();
-	cout << endl<<endl;
 
 /*//////////////////////////////////////////////////////////////STEP 5///////////////////////////////////////////////////*/
 
 	cout << "--------------------------------------------STEP 5-------------------------------------------\n\n";
 	
 	Queue_of_trees.part_5 ();
+	cout << endl;
+
 	system ( "pause" );
 	return 0;
 }

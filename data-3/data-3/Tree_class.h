@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 
+int glo = 0;
 struct node
 {
 	char alphabet;	//Alphabet
@@ -58,10 +59,6 @@ public:
 		root->frq = k + j;
 		root->left = lft;
 		root->right = rht;
-		root->left->left = NULL;
-		root->left->right = NULL;
-		root->right->right = NULL;
-		root->right->right = NULL;
 	}
 
 	void print () {
@@ -117,18 +114,44 @@ public:
 		}
 	}
 
-	void assign_traversal_values ( node* root_sent, string to_assign ) {
+	void print2 ( node * Root ) {
+		if ( Root == NULL ) {
+			return;
+		}
+		print2 ( Root->left );
+		cout << Root->alphabet<<endl;
+		print2 ( Root->right );
 
-		string sss;
+	}
+	void assign_traversal_values ( node* root_sent, string& to_assign ) {
+
 		if ( root_sent != NULL ) {
+		
 			assign_traversal_values ( root_sent->left, to_assign += "0" );
+			
+			if ( root_sent->alphabet == NULL ) {
+				to_assign = to_assign.substr ( 0, to_assign.size () - 1 );
+			}
+			
+			if ( root_sent->alphabet != NULL ) {
+				cout << root_sent->alphabet << " " << root_sent->frq << '\t';
+			}
+
 			assign_traversal_values ( root_sent->right, to_assign += "1" );
+			
+			if ( root_sent->alphabet == NULL ) {
+				to_assign = to_assign.substr ( 0, to_assign.size () - 1 );
+			}
+
 		}
 
 		else {
-			//to_assign = to_assign.substr ( 0, to_assign.size () - 1 );
-			sss += to_assign;
-			cout << sss<<endl;
+			glo++;
+			to_assign = to_assign.substr ( 0, to_assign.size () - 1 );
+			if ( glo % 2 == 0 ) {
+				cout << to_assign << endl;
+			}
+			
 			return;
 		}
 	}
@@ -185,71 +208,3 @@ public:
 		return this->root->right->alphabet;
 	}
 };
-
-//INSERTION OF A NODE IN A TREE
-//void insert ( char alph_sent, int freq_sent,node *root_sent) {
-
-//	if ( root != NULL )
-//	{
-//		if ( freq_sent< root->frq )
-//		{
-//			if ( root->left != NULL )
-//				insert ( alph_sent, freq_sent, root_sent->left );
-//			else
-//			{
-//				root->left = new node;
-//				root->left->frq = freq_sent;
-//				root->left->alphabet = alph_sent;
-//				root->left->left = NULL;
-//				root->left->right = NULL;
-//			}
-//		}
-
-//		else if ( freq_sent >= root->frq )
-//		{
-//			if ( root->right != NULL )
-//				insert ( alph_sent, freq_sent, root_sent->right );
-//			else
-//			{
-//				root->right = new node;
-//				root->right->frq = freq_sent;
-//				root->right->alphabet = alph_sent;
-//				root->right->left = NULL;
-//				root->right->right = NULL;
-//			}
-//		}
-//	}
-
-//	else
-//	{
-//		root = new node;
-//		root->frq = freq_sent;
-//		root->alphabet = alph_sent;
-//		root->left = NULL;
-//		root->right = NULL;
-//	}
-//}
-
-//node* search ( int freq_sent, node *root ) {
-
-//	if ( root != NULL )
-//	{
-//		if ( freq_sent == root->frq )
-//			return root;
-//		else if ( freq_sent<root->frq )
-//			return search ( freq_sent, root->left );
-//		else
-//			return search ( freq_sent, root->right );
-//	}
-//	else return NULL;
-//}
-//
-//void delete_tree ( node *root ) {
-//	
-//	if ( root != NULL )
-//	{
-//		delete_tree ( root->left );
-//		delete_tree ( root->right );
-//		delete root;
-//	}
-//}

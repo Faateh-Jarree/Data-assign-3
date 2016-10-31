@@ -108,14 +108,6 @@ public:
 					temp2 = temp->record;
 					temp->record = temp->next->record;
 					temp->next->record = temp2;
-					/*temp_freq = temp->record.get_freq ();
-					temp_char = temp->record.get_alpha ();
-						
-					temp->record.set_freq ( temp->next->record.get_freq () );
-					temp->record.set_alpha ( temp->next->record.get_alpha () );
-	
-					temp->next->record.set_freq ( temp_freq );
-					temp->next->record.set_alpha ( temp_char );*/
 				}
 	
 				else {
@@ -149,121 +141,16 @@ public:
 		}
 	}
 
+	void store_string (string str_sent) {
+
+	}
+
+	//Implementing Part 5
 	void part_5 () {
-		string ss;
-		this->front->record.assign_traversal_values ( front->record.get_root (), ss );
+		string ss="";
+	
+		node* j = this->front->record.get_root ();
+		this->front->record.assign_traversal_values ( j, ss );
 		//cout << "\n\nString formed = " << ss;
 	}
 };
-//struct linked_list {
-//	Node *head;
-//
-//	linked_list () :head ( NULL ) {}
-//
-//	bool is_empty () {
-//		if ( head == NULL ) { return true; }
-//		else { return false; }
-//	}
-//
-//	void add_tree ( bin_tree tree_sent ) {
-//
-//		if ( is_empty () ) {
-//			//			cout<<"yy";
-//			head = new Node;
-//			head->record = tree_sent;
-//			head->next = NULL;
-//		}
-//		else {
-//			//			cout<<"xx\n";
-//			Node *temp_Node = new Node;
-//			temp_Node->record = tree_sent;
-//			temp_Node->next = NULL;
-//
-//			Node* _last = head;
-//			while ( _last->next != NULL ) {
-//				_last = _last->next;
-//			}
-//			_last->next = temp_Node;
-//		}
-//	}
-//
-//	void sort_list () {
-//		
-//		Node *temp = head;
-//
-//		int counter = 0;
-//		int temp_freq;
-//		char temp_char;
-//
-//		while ( temp ) {
-//			temp = temp->next;
-//			counter++;
-//		}
-//		temp = head;
-//
-//		for ( int i = 0; i < counter; i++ ) {
-//
-//			while ( temp->next ) {
-//
-//				if ( temp->record.get_freq() > temp->next->record.get_freq() ) {
-//
-//					temp_freq = temp->record.get_freq ();
-//					temp_char = temp->record.get_alpha ();
-//					
-//					temp->record.set_freq ( temp->next->record.get_freq () );
-//					temp->record.set_alpha ( temp->next->record.get_alpha () );
-//
-//					temp->next->record.set_freq ( temp_freq );
-//					temp->next->record.set_alpha ( temp_char );
-//					
-//				}
-//
-//				else {
-//					temp = temp->next;
-//				}
-//			}
-//			temp = head;
-//		}
-//	}
-//
-//	void print () {
-//	
-//		if ( is_empty () ) {
-//			cout << "list is empty. cant print.\n";
-//		}
-//	
-//		else {
-//			Node* printer = head;
-//			for ( ; printer != NULL;) {
-//				cout << "Alphabet = " << printer->record.get_alpha ();
-//				cout << "\tFrequency =  " << printer->record.get_freq() << endl;
-//				printer = printer->next;
-//			}
-//		}
-//	}
-//
-//	//Implementing Part 3
-//	void part_3 () {
-//
-//		bin_tree temp;
-//		Node *temp_ptr = head;
-//		node *temp_left;
-//		node *temp_right;
-//
-//		while ( temp_ptr->next != NULL ) {
-//
-//			temp_left = temp_ptr->record.get_root();
-//			temp_left = temp_ptr->next->record.get_root ();
-//			temp.create_new ( temp_left, temp_right );
-//
-//			this->add_tree ( temp );
-//			
-//			for ( int i = 0; i < 2; i++ ) {
-//				temp_ptr = temp_ptr->next;
-//			}
-//			
-//			this->head = temp_ptr;
-//			this->sort_list ();
-//		}
-//	}
-//};

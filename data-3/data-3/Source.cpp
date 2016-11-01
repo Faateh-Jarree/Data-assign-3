@@ -69,9 +69,12 @@ void encode ( array_freq *arr,int counter ) {
 	myfile1.close ();
 }
 
-void decode ( node* ptr_sent ) {
+void decode ( node* root_sent ) {
 
+	node* root_temp1 = root_sent;
+	node* root_temp2 = root_sent;
 	
+
 	string stored_file, line_reader;
 	ifstream myfile;
 
@@ -83,28 +86,43 @@ void decode ( node* ptr_sent ) {
 	}
 	
 	ofstream myfile1;
-	myfile1.open ( "decoded_data.txt", ios::out );
-	int i = 0; int k = 0; int l = 0;
-
-	while ( ptr_sent ) {
-		if ( stored_file[i] == '0' ) {
-			ptr_sent = ptr_sent->left;
-			k++;
-			cout << k << endl;
-		}
-		else if ( stored_file[i] == '1' ) {
-			ptr_sent = ptr_sent->right;
-			l++;
-			cout << l << endl;
-		}
-		i++;
-	}
+	myfile1.open ( "decoded_data.txt", ios::out );		
 	
-	/*if ( myfile.is_open () ) {
-		for ( int i = 0; i < stored_file.length (); i++ ) {
+	if ( myfile1.is_open () ) {
 		
-		}
-	}*/
+		for ( int i = 0; i < stored_file.length ();i++ ) {
+			//while ( root_temp1 != NULL ) {
+				
+				if ( stored_file[i] == '0' ) {
+	
+					root_temp1 = root_temp1->left;
+					if ( root_temp1 == NULL ) {
+						break;
+					}
+					/*else if ( i < stored_file.length () ) {
+						i++;
+					}*/					
+				}
+
+				if ( root_temp1->alphabet != NULL ) {
+					cout << root_temp1->alphabet << endl;
+					root_temp1 = root_temp2;
+				}
+
+				if ( stored_file[i] == '1' ) {
+
+					root_temp1 = root_temp1->right;
+					if ( root_temp1 == NULL ) {
+						break;
+					}
+					/*else if ( i < stored_file.length () ) {
+						i++;
+					}*/
+					
+				}				
+			//}//end ehile
+		}//end FOR
+	}//end if myfile1 is open
 }
 
 
@@ -159,7 +177,6 @@ int main () {
 	encode ( arr, table_size );
 
 	decode ( Queue_of_trees.get_front_tree () );
-
 
 	system ( "pause" );
 	return 0;

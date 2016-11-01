@@ -161,6 +161,6 @@ public:
 	}
 
 	node* get_front_tree () {
-		return this->front->record.get_root ();
+		return this->front->record.get_root();
 	}
 };

@@ -19,8 +19,8 @@ void calc_freq(int arr_sent[]){
 	while ( myfile.good () ) {
 		getline ( myfile, line_reader );
 		stored_file += line_reader;		
-		//stored_file += '\n';			//new line after every line read
 	}
+	myfile.close ();
 	//cout << stored_file << endl;		//check = true for large input
 
 	//char count array (initialized as 0)
@@ -37,6 +37,74 @@ void calc_freq(int arr_sent[]){
 			}
 	}
 	//cout << arr_sent[32] << endl;		//check = true for All input
+}
+
+void encode ( array_freq *arr,int counter ) {
+
+	//strings to read line and store all file in one string
+	string stored_file, line_reader;
+	ifstream myfile;
+
+	myfile.open ( "test.txt" );
+
+	while ( myfile.good () ) {
+		getline ( myfile, line_reader );
+		stored_file += line_reader;
+	}
+	myfile.close ();
+
+	ofstream myfile1;
+	myfile1.open ( "encoded_data.txt", ios::out );
+	
+	if ( myfile1.is_open () ) {
+
+		for ( int i = 0; i < stored_file.size (); i++ ) {
+			for ( int j = 0; j < counter; j++ ) {
+				if ( stored_file[i] == arr[j].alp ) {
+					myfile1 << arr[j].bin_val;
+				}
+			}
+		}
+	}
+	myfile1.close ();
+}
+
+void decode ( node* ptr_sent ) {
+
+	
+	string stored_file, line_reader;
+	ifstream myfile;
+
+	myfile.open ( "encoded_data.txt" );
+
+	while ( myfile.good () ) {
+		getline ( myfile, line_reader );
+		stored_file += line_reader;
+	}
+	
+	ofstream myfile1;
+	myfile1.open ( "decoded_data.txt", ios::out );
+	int i = 0; int k = 0; int l = 0;
+
+	while ( ptr_sent ) {
+		if ( stored_file[i] == '0' ) {
+			ptr_sent = ptr_sent->left;
+			k++;
+			cout << k << endl;
+		}
+		else if ( stored_file[i] == '1' ) {
+			ptr_sent = ptr_sent->right;
+			l++;
+			cout << l << endl;
+		}
+		i++;
+	}
+	
+	/*if ( myfile.is_open () ) {
+		for ( int i = 0; i < stored_file.length (); i++ ) {
+		
+		}
+	}*/
 }
 
 
@@ -62,8 +130,8 @@ int main () {
 	}
 
 	//for part 5
-	int size = 0;
-	size = Queue_of_trees.get_size ();
+	int table_size = 0;
+	table_size = Queue_of_trees.get_size ();
 
 	cout << "--------------------------------------------STEP 1-------------------------------------------\n\n";
 	Queue_of_trees.display();
@@ -81,9 +149,18 @@ int main () {
 
 	cout << "--------------------------------------------STEP 5-------------------------------------------\n\n";
 
-	array_freq *arr = new array_freq[size];
+	array_freq *arr = new array_freq[table_size];
+
 	Queue_of_trees.part_5 (arr);
-	arr[0].print ();
+	for ( int i = 0; i < table_size; i++ ) {
+		arr[i].print ();
+	}
+	
+	encode ( arr, table_size );
+
+	decode ( Queue_of_trees.get_front_tree () );
+
+
 	system ( "pause" );
 	return 0;
 }

@@ -121,7 +121,7 @@ public:
 
 	int get_size () {
 		Node* temp_ptr = front;
-		int counter;
+		int counter=0;
 		while ( temp_ptr ) {
 			counter++;
 			temp_ptr = temp_ptr->next;
@@ -157,6 +157,10 @@ public:
 	
 		string ss="";
 		node* j = this->front->record.get_root ();
-		this->front->record.assign_traversal_values ( j, ss ,ar);
+		this->front->record.assign_traversal_values ( j, ss, ar );
+	}
+
+	node* get_front_tree () {
+		return this->front->record.get_root ();
 	}
 };

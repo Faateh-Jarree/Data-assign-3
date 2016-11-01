@@ -118,12 +118,6 @@ public:
 		}
 	}
 
-	void store_string ( string &str_sent ) {
-		string ss;
-		ss += str_sent;
-		cout << "ss = " << ss << endl;
-	}
-
 	void assign_traversal_values ( node* root_sent, string& to_assign, array_freq ar[]) {
 
 		if ( root_sent != NULL ) {

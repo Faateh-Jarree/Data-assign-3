@@ -69,12 +69,63 @@ void encode ( array_freq *arr,int counter ) {
 	myfile1.close ();
 }
 
-void decode ( node* root_sent ) {
+//void decode ( node* root_sent ) {
+//
+//	node* root_temp1 = root_sent;
+//	node* root_temp2 = root_sent;
+//	
+//	cout << root_sent->right->left->right->left->right->alphabet << endl;
+	/*string stored_file, line_reader;
+	ifstream myfile;
 
-	node* root_temp1 = root_sent;
-	node* root_temp2 = root_sent;
-	
+	myfile.open ( "encoded_data.txt" );
 
+	while ( myfile.good () ) {
+		getline ( myfile, line_reader );
+		stored_file += line_reader;
+	}*/
+//	cout << stored_file << endl;
+//	ofstream myfile1;
+//	myfile1.open ( "decoded_data.txt", ios::out );		
+//	
+//	if ( myfile1.is_open () ) {
+//		
+//		for ( int i = 0; i < stored_file.length ();i++ ) {
+//			//while ( root_temp1 != NULL ) {
+//				
+//				if ( stored_file[i] == '0' ) {
+//	
+//					root_temp1 = root_temp1->left;
+//					if ( root_temp1 == NULL ) {
+//						break;
+//					}
+//					/*else if ( i < stored_file.length () ) {
+//						i++;
+//					}*/					
+//				}
+//
+//				if ( root_temp1->alphabet != NULL ) {
+//					cout << root_temp1->alphabet << endl;
+//					root_temp1 = root_temp2;
+//				}
+//
+//				if ( stored_file[i] == '1' ) {
+//
+//					root_temp1 = root_temp1->right;
+//					if ( root_temp1 == NULL ) {
+//						break;
+//					}
+//					/*else if ( i < stored_file.length () ) {
+//						i++;
+//					}*/
+//					
+//				}				
+//			//}//end ehile
+//		}//end FOR
+//	}//end if myfile1 is open
+//}
+
+void decode ( node* root_sent, int size,array_freq arr[] ) {
 	string stored_file, line_reader;
 	ifstream myfile;
 
@@ -83,48 +134,24 @@ void decode ( node* root_sent ) {
 	while ( myfile.good () ) {
 		getline ( myfile, line_reader );
 		stored_file += line_reader;
-	}
-	
-	ofstream myfile1;
-	myfile1.open ( "decoded_data.txt", ios::out );		
-	
-	if ( myfile1.is_open () ) {
 		
-		for ( int i = 0; i < stored_file.length ();i++ ) {
-			//while ( root_temp1 != NULL ) {
-				
-				if ( stored_file[i] == '0' ) {
-	
-					root_temp1 = root_temp1->left;
-					if ( root_temp1 == NULL ) {
-						break;
-					}
-					/*else if ( i < stored_file.length () ) {
-						i++;
-					}*/					
-				}
 
-				if ( root_temp1->alphabet != NULL ) {
-					cout << root_temp1->alphabet << endl;
-					root_temp1 = root_temp2;
-				}
+	}
+	string temp = "";
+	for ( int i = 0; i < stored_file.length (); i++ ) {
+		temp += stored_file[i];
 
-				if ( stored_file[i] == '1' ) {
+		for ( int j = 0; j < size; j++ ) {
+			if ( temp == arr[j].bin_val ) {
+				cout << arr[j].alp << endl;
+				temp = "";
+				break;
+			}
+		}
+	}
 
-					root_temp1 = root_temp1->right;
-					if ( root_temp1 == NULL ) {
-						break;
-					}
-					/*else if ( i < stored_file.length () ) {
-						i++;
-					}*/
-					
-				}				
-			//}//end ehile
-		}//end FOR
-	}//end if myfile1 is open
+
 }
-
 
 int main () {
 
@@ -176,7 +203,7 @@ int main () {
 	
 	encode ( arr, table_size );
 
-	decode ( Queue_of_trees.get_front_tree () );
+	decode ( Queue_of_trees.get_front_tree (),table_size,arr );
 
 	system ( "pause" );
 	return 0;

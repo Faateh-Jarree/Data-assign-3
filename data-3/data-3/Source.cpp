@@ -2,8 +2,8 @@
 #include <algorithm>
 #include <fstream>
 #include <string>
-#include "LinkedList.h"
-#include "array_frequency.h"
+#include "Queue.h"
+#include "code_table.h"
 
 using namespace std;
 
@@ -134,23 +134,27 @@ void decode ( node* root_sent, int size,array_freq arr[] ) {
 	while ( myfile.good () ) {
 		getline ( myfile, line_reader );
 		stored_file += line_reader;
-		
-
 	}
-	string temp = "";
-	for ( int i = 0; i < stored_file.length (); i++ ) {
-		temp += stored_file[i];
+	myfile.close ();
 
-		for ( int j = 0; j < size; j++ ) {
-			if ( temp == arr[j].bin_val ) {
-				cout << arr[j].alp << endl;
-				temp = "";
-				break;
+	ofstream myfile1;
+	myfile1.open ( "decoded_data.txt", ios::out );
+	
+	if ( myfile1.is_open () ) {
+		string temp = "";
+		for ( int i = 0; i < stored_file.length (); i++ ) {
+			temp += stored_file[i];
+
+			for ( int j = 0; j < size; j++ ) {
+				if ( temp == arr[j].bin_val ) {
+					myfile1 << arr[j].alp;
+					temp = "";
+					break;
+				}
 			}
 		}
 	}
-
-
+	myfile1.close ();
 }
 
 int main () {

@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
-#include "Tree_class.h"
-#include "array_frequency.h"
+#include "Tree_struct.h"
+#include "code_table.h"
 using namespace std;
 
 struct Node {

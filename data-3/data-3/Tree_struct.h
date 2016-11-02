@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "array_frequency.h"
+#include "code_table.h"
 using namespace std;
 
 int glo = 0;

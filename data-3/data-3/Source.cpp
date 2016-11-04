@@ -2,8 +2,9 @@
 #include <algorithm>
 #include <fstream>
 #include <string>
-#include "Queue.h"
+#include "Queue_class.h"
 #include "code_table.h"
+//#include "MyForm.h"
 
 using namespace std;
 
